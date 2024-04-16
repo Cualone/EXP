@@ -1,0 +1,71 @@
+<html layout:decorate="~{/layout.html}">
+
+<body>
+<main layout:fragment="main">
+    <script>
+        function JoinForm__submit(form) {
+
+            form.memberId.value = form.memberId.value.trim();
+
+            if (form.memberId.value.length === 0) {
+                toastWarning('아이디를 입력해주세요.');
+                form.memberId.focus();
+                return;
+            }
+
+            if (form.memberId.value.length < 4) {
+                toastWarning('아이디를 4자 이상 입력해주세요.');
+                form.memberId.focus();
+                return;
+            }
+
+            form.memberName.value = form.memberName.value.trim();
+
+            if (form.memberName.value.length === 0) {
+                toastWarning('닉네임을 입력해주세요.');
+                form.memberName.focus();
+                return;
+            }
+
+            if (form.memberName.value.length < 2) {
+                toastWarning('닉네임을 2자 이상 입력해주세요.');
+                form.memberName.focus();
+                return;
+            }
+
+            form.password.value = form.password.value.trim();
+
+            if (form.password.value.length === 0) {
+                form.password.focus();
+                toastWarning('비밀번호를 입력해주세요.');
+                return;
+            }
+
+            if (form.password.value.length < 6) {
+                toastWarning('비밀번호를 6자 이상 입력해주세요.');
+                form.password.focus();
+                return;
+            }
+
+            form.submit();
+        }
+    </script>
+
+    <form th:action method="POST" class="p-10 flex flex-col gap-4" onsubmit="JoinForm__submit(this); return false;">
+    <div>
+        <input type="text" name="memberId" placeholder="아이디" class="input input-bordered">
+    </div>
+    <div>
+        <input type="text" name="memberName" placeholder="닉네임" class="input input-bordered">
+    </div>
+    <div>
+        <input type="password" name="password" placeholder="비밀번호" class="input input-bordered">
+    </div>
+    <div>
+        <input type="submit" value="회원가입" class="btn btn-primary">
+    </div>
+</form>
+</main>
+</body>
+
+</html>

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class MemberCreateForm {
 
-    @Size(min = 5, max = 10)
+    @Size(min = 4, max = 10)
     @NotEmpty(message = "ID는 필수항목입니다.")
     private String memberId;
 
