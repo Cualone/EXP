@@ -12,9 +12,10 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public Member create (String username, String password) {
+    public Member create (String id, String name, String password) {
         Member member = new Member();
-        member.setUserName(username);
+        member.setMemberId(id);
+        member.setMemberName(name);
         member.setPassword(passwordEncoder.encode(password));
         this.memberRepository.save(member);
         return member;

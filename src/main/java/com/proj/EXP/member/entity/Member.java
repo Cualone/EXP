@@ -13,7 +13,10 @@ public class Member {
     private Long id;
 
     @Column(unique = true)
-    private String userName;
+    private String memberId;
+
+    @Column(unique = true)
+    private String memberName;
 
     private String password;
 }
