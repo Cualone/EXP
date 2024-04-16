@@ -14,11 +14,13 @@
 
             if (form.memberId.value.length === 0) {
                 form.memberId.focus();
+                alert("아이디를 입력해주세요.");
                 return;
             }
 
             if (form.memberId.value.length < 4) {
                 form.memberId.focus();
+                alert("아이디를 4글자 이상 입력해주세요.");
                 return;
             }
 
@@ -26,11 +28,13 @@
 
             if (form.password.value.length === 0) {
                 form.password.focus();
+                alert("비밀번호를 입력해주세요.");
                 return;
             }
 
             if (form.password.value.length < 6) {
                 form.password.focus();
+                alert("비밀번호를 6자 이상 입력해주세요.");
                 return;
             }
 
@@ -39,8 +43,13 @@
     </script>
 
     <form th:action method="POST" class="p-10 flex flex-col gap-4" onsubmit="LoginForm__submit(this); return false;">
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">
+                아이디 또는 비밀번호를 확인해 주세요.
+            </div>
+        </div>
         <div>
-            <input type="text" name="memberId" maxlength="10" placeholder="아이디" class="input input-bordered">
+            <input type="text" name="username" maxlength="10" placeholder="아이디" class="input input-bordered">
         </div>
         <div>
             <input type="password" name="password" maxlength="25" placeholder="비밀번호" class="input input-bordered">

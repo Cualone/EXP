@@ -9,11 +9,13 @@
 
             if (form.memberId.value.length === 0) {
                 form.memberId.focus();
+                alert("아이디를 입력해주세요.");
                 return;
             }
 
             if (form.memberId.value.length < 4) {
                 form.memberId.focus();
+                alert("아이디를 4글자 이상 입력해주세요.");
                 return;
             }
 
@@ -21,11 +23,13 @@
 
             if (form.memberName.value.length === 0) {
                 form.memberName.focus();
+                alert("닉네임을 입력해주세요.");
                 return;
             }
 
             if (form.memberName.value.length < 2) {
                 form.memberName.focus();
+                alert("닉네임을 2글자 이상 입력해주세요.");
                 return;
             }
 
@@ -33,11 +37,13 @@
 
             if (form.password.value.length === 0) {
                 form.password.focus();
+                alert("비밀번호를 입력해주세요.");
                 return;
             }
 
             if (form.password.value.length < 6) {
                 form.password.focus();
+                alert("비밀번호를 6자 이상 입력해주세요.");
                 return;
             }
 
