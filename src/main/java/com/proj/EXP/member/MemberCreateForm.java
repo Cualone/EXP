@@ -1,9 +1,13 @@
 package com.proj.EXP.member;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -20,4 +24,15 @@ public class MemberCreateForm {
     @Size(min = 6, max = 25)
     @NotEmpty(message = "비밀번호는 필수항목입니다.")
     private String password;
+
+    private boolean gender;
+
+    @NotNull
+    private LocalDate birthDate;
+
+    @NotNull
+    private double height;
+
+    @NotNull
+    private double weight;
 }

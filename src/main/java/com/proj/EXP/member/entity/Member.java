@@ -5,8 +5,12 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Builder
 @NoArgsConstructor
@@ -15,10 +19,8 @@ import java.util.List;
 @Getter
 @Entity
 public class Member {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    @Id
     @Column(unique = true)
     private String memberId;
 
@@ -26,6 +28,14 @@ public class Member {
     private String memberName;
 
     private String password;
+
+    private boolean gender; //0 = 남, 1 = 여
+
+    private LocalDate birthDate;
+
+    private double height;
+
+    private double weight;
 
     public List<? extends GrantedAuthority> getGrantedAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();

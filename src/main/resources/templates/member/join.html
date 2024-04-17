@@ -47,19 +47,47 @@
                 return;
             }
 
+            if (form.gender.value.length === 0) {
+                alert("성별을 선택해주세요")
+                return;
+            }
+
+            if (form.height.value.length === 0 || form.weight.value.length === 0) {
+                alert("키와 몸무게를 입력해 주세요")
+                return;
+            }
+
             form.submit();
         }
     </script>
 
     <form th:action method="POST" class="p-10 flex flex-col gap-4" onsubmit="JoinForm__submit(this); return false;">
         <div>
-            <input type="text" name="memberId" placeholder="아이디" class="input input-bordered">
+            <input type="text" class="form-control" name="memberId" placeholder="아이디">
         </div>
         <div>
-            <input type="text" name="memberName" placeholder="닉네임" class="input input-bordered">
+            <input type="text" class="form-control" name="memberName" placeholder="닉네임">
         </div>
         <div>
-            <input type="password" name="password" placeholder="비밀번호" class="input input-bordered">
+            <input type="password" class="form-control" name="password" placeholder="비밀번호">
+        </div>
+        <div>
+            <input type="radio" id="genderMale" name="gender" value="false">
+            <label for="genderMale">남성</label>
+            <input type="radio" id="genderFemale" name="gender" value="true">
+            <label for="genderFemale">여성</label>
+        </div>
+        <div>
+            <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+        </div>
+        <div>
+            <label for="height">키(cm)</label>
+            <input type="number" class="form-control" id="height" name="height" placeholder="키 입력">
+        </div>
+
+        <div>
+            <label for="weight">몸무게(kg)</label>
+            <input type="number" class="form-control" id="weight" name="weight" placeholder="몸무게 입력">
         </div>
         <div>
             <input type="submit" value="회원가입" class="btn btn-primary">
