@@ -1,14 +1,13 @@
 <html>
 
 <head>
-
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
-    <!-- sbb CSS -->
-    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 
     <style>
         @font-face {
@@ -18,25 +17,47 @@
             font-style: normal;
         }
 
-        html > body {
+        body {
             font-family: "GmarketSansMedium";
             text-underline-position: under;
+            background-color: #f8f9fa; /* 배경색 변경 */
+        }
+
+        .container {
+            margin-top: 50px; /* 상단 여백 추가 */
+        }
+
+        /* 추가한 스타일 */
+        .main-section {
+            background-color: #ffffff; /* 배경색 변경 */
+            padding: 20px;
+            border-radius: 10px; /* 테두리를 둥글게 만듦 */
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
         }
     </style>
-
 </head>
 
 <body>
+<!-- 네비게이션바 -->
+<nav th:replace="~{navbar :: navbarFragment}"></nav>
 
-
-<th:block layout:fragment="main"></th:block>
+<div class="container">
+    <div class="row justify-content-center"> <!-- 중앙 정렬 -->
+        <div class="col-lg-8"> <!-- 중앙에 위치할 크기 지정 -->
+            <div class="main-section">
+                <div layout:fragment="main">
+                    <!-- 여기에 main 내용을 추가하세요 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Bootstrap JS -->
-<script th:src="@{/bootstrap.min.js}"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- 자바스크립트 Start -->
-<th:block layout:fragment="script"></th:block>
+<script src="script.js"></script>
 <!-- 자바스크립트 End -->
-
 </body>
 
 </html>
