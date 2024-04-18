@@ -27,12 +27,12 @@
             margin-top: 50px; /* 상단 여백 추가 */
         }
 
-        /* 추가한 스타일 */
         .main-section {
             background-color: #ffffff; /* 배경색 변경 */
             padding: 20px;
             border-radius: 10px; /* 테두리를 둥글게 만듦 */
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+            height: 600px
         }
     </style>
 </head>
@@ -43,11 +43,15 @@
 
 <div class="container">
     <div class="row justify-content-center"> <!-- 중앙 정렬 -->
-        <div class="col-lg-8"> <!-- 중앙에 위치할 크기 지정 -->
+        <div class="col-lg-8" > <!-- 중앙에 위치할 크기 지정 -->
             <div class="main-section">
                 <div layout:fragment="main">
-                    <!-- 여기에 main 내용을 추가하세요 -->
                 </div>
+            </div>
+        </div>
+        <div class="col-lg-4"> <!-- 오른쪽에 위치할 크기 지정 -->
+            <div class="main-section">
+                <div th:replace="status :: statusFragment"></div>
             </div>
         </div>
     </div>
