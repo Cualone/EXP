@@ -59,6 +59,11 @@
 
             form.submit();
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById("birthDate").setAttribute("max", today);
+        });
     </script>
 
     <form th:action method="POST" class="p-10 flex flex-col gap-4" onsubmit="JoinForm__submit(this); return false;">
@@ -78,16 +83,17 @@
             <label for="genderFemale">여성</label>
         </div>
         <div>
-            <input type="date" class="form-control" id="birthDate" name="birthDate" required>
+            <label for="birthDate">생년월일</label>
+            <input type="date" class="form-control" id="birthDate" name="birthDate" required max="<%=java.time.LocalDate.now()%>">
         </div>
         <div>
             <label for="height">키(cm)</label>
-            <input type="number" class="form-control" id="height" name="height" placeholder="키 입력">
+            <input type="number" class="form-control" id="height" name="height" placeholder="키 입력" min="1">
         </div>
 
         <div>
             <label for="weight">몸무게(kg)</label>
-            <input type="number" class="form-control" id="weight" name="weight" placeholder="몸무게 입력">
+            <input type="number" class="form-control" id="weight" name="weight" placeholder="몸무게 입력" min="1">
         </div>
         <div>
             <input type="submit" value="회원가입" class="btn btn-primary">
