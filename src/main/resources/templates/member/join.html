@@ -1,6 +1,7 @@
 <html layout:decorate="~{/layout.html}">
 
 <body>
+
 <main layout:fragment="main">
     <script>
         function JoinForm__submit(form) {
@@ -65,40 +66,41 @@
             document.getElementById("birthDate").setAttribute("max", today);
         });
     </script>
+    <div class="form-container">
+        <form th:action method="POST" class="p-10 flex flex-col gap-4" onsubmit="JoinForm__submit(this); return false;">
+            <div>
+                <input type="text" class="form-control mb-2" name="memberId" placeholder="아이디">
+            </div>
+            <div>
+                <input type="text" class="form-control mb-2" name="memberName" placeholder="닉네임">
+            </div>
+            <div>
+                <input type="password" class="form-control mb-2" name="password" placeholder="비밀번호">
+            </div>
+            <div>
+                <input type="radio" id="genderMale" name="gender" value="false">
+                <label for="genderMale">남성</label>
+                <input type="radio" id="genderFemale" name="gender" value="true">
+                <label for="genderFemale">여성</label>
+            </div>
+            <div>
+                <label class="field-label" for="birthDate">생년월일</label>
+                <input type="date" class="form-control mb-2" id="birthDate" name="birthDate" required max="<%=java.time.LocalDate.now()%>">
+            </div>
+            <div>
+                <label class="field-label" for="height">키(cm)</label>
+                <input type="number" class="form-control mb-2" id="height" name="height" placeholder="키 입력" min="1">
+            </div>
 
-    <form th:action method="POST" class="p-10 flex flex-col gap-4" onsubmit="JoinForm__submit(this); return false;">
-        <div>
-            <input type="text" class="form-control" name="memberId" placeholder="아이디">
-        </div>
-        <div>
-            <input type="text" class="form-control" name="memberName" placeholder="닉네임">
-        </div>
-        <div>
-            <input type="password" class="form-control" name="password" placeholder="비밀번호">
-        </div>
-        <div>
-            <input type="radio" id="genderMale" name="gender" value="false">
-            <label for="genderMale">남성</label>
-            <input type="radio" id="genderFemale" name="gender" value="true">
-            <label for="genderFemale">여성</label>
-        </div>
-        <div>
-            <label for="birthDate">생년월일</label>
-            <input type="date" class="form-control" id="birthDate" name="birthDate" required max="<%=java.time.LocalDate.now()%>">
-        </div>
-        <div>
-            <label for="height">키(cm)</label>
-            <input type="number" class="form-control" id="height" name="height" placeholder="키 입력" min="1">
-        </div>
-
-        <div>
-            <label for="weight">몸무게(kg)</label>
-            <input type="number" class="form-control" id="weight" name="weight" placeholder="몸무게 입력" min="1">
-        </div>
-        <div class="d-flex justify-content-center mt-3">
-            <input type="submit" value="회원가입" class="btn btn-primary">
-        </div>
-    </form>
+            <div>
+                <label class="field-label" for="weight">몸무게(kg)</label>
+                <input type="number" class="form-control mb-2" id="weight" name="weight" placeholder="몸무게 입력" min="1">
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <input type="submit" value="회원가입" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
 </main>
 </body>
 
