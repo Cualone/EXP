@@ -2,13 +2,11 @@ package com.proj.EXP.exercise.entity;
 
 import com.proj.EXP.target.entity.Target;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
@@ -17,12 +15,12 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class Exercise {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long exId;
 
     @OneToOne
-    @JoinColumn(name = "targetId")
-    private Target targetId;
+    @JoinColumn(name = "targetId", referencedColumnName = "targetId")
+    private Target target;
 
     private String exName;
 
