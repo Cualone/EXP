@@ -1,28 +1,40 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>운동 목록</title>
-    <!-- 스타일시트 및 자바스크립트 링크 추가(필요시) -->
-</head>
+<html layout:decorate="~{/layout.html}">
+
 <body>
-<h1>운동 목록</h1>
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>운동 이름</th>
-            <th>대상</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- exercises 목록 반복 처리 -->
-        <tr th:each="exercise : ${exercises}">
-            <td th:text="${exercise.exName}">운동 이름</td>
-            <td th:text="${exercise.target.getTarget()}">대상 이름</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+
+<main layout:fragment="main">
+    <script>
+        function filterByTarget(targetId) {
+            location.href = '/exercise/list?target=' + targetId;
+        }
+    </script>
+    <h1>운동 목록</h1>
+    <div>
+        <button onclick="filterByTarget(0)">모든 부위</button>
+        <button onclick="filterByTarget(1)">가슴</button>
+        <button onclick="filterByTarget(2)">등</button>
+        <button onclick="filterByTarget(3)">어깨</button>
+        <button onclick="filterByTarget(4)">팔</button>
+        <button onclick="filterByTarget(5)">하체</button>
+    </div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>운동 이름</th>
+                <th>대상</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- exercises 목록 반복 처리 -->
+            <tr th:each="exercise : ${exercises}">
+                <td th:text="${exercise.exName}">운동 이름</td>
+                <td th:text="${exercise.target.getTarget()}">타겟 이름</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 </body>
+
 </html>
