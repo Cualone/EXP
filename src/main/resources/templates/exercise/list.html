@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>운동 목록</title>
+    <!-- 스타일시트 및 자바스크립트 링크 추가(필요시) -->
+</head>
+<body>
+<h1>운동 목록</h1>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>운동 이름</th>
+            <th>대상</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- exercises 목록 반복 처리 -->
+        <tr th:each="exercise : ${exercises}">
+            <td th:text="${exercise.exName}">운동 이름</td>
+            <td th:text="${exercise.target.getTarget()}">대상 이름</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
