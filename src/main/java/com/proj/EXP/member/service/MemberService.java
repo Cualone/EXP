@@ -30,4 +30,7 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
+    public Optional<Member> findByMemberId(String memberId) {
+        return memberRepository.findByMemberId(memberId);
+    }
 }
