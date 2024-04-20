@@ -39,7 +39,9 @@ public class ExerciseService {
 
         Optional<Target> target = targetRepository.findById(targetId);
         if (target.isPresent()) {
-            return exerciseRepository.findByTargetAndIsCommonTrueOrCreator(target.get(), member);
+            List<Exercise> arr = exerciseRepository.findByTargetAndIsCommonTrue(target.get());
+            arr.addAll(exerciseRepository.findByTargetAndIsCommonFalseAndCreator(target.get(), member));
+            return arr;
         } else {
             return new ArrayList<>();
         }

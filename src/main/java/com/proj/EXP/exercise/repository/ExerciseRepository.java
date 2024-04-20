@@ -13,6 +13,9 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
 
     List<Exercise> findByIsCommonTrueOrCreator(Member creator);
 
-    List<Exercise> findByTargetAndIsCommonTrueOrCreator(Target target, Member creator);
+    List<Exercise> findByTargetAndIsCommonFalseAndCreator(Target target, Member creator);
+
+    List<Exercise> findByTargetAndIsCommonTrue(Target target);
+
 
 }
