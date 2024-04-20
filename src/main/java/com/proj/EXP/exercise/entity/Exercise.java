@@ -24,8 +24,6 @@ public class Exercise {
     @JoinColumn(name = "targetId", referencedColumnName = "targetId")
     private Target target;
 
-    private boolean isCommon;   //1 = 공통, 0 = 개인
-
     @ManyToOne
     @JoinColumn(name = "memberId", referencedColumnName = "memberId")
     private Member creator;

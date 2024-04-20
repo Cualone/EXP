@@ -48,7 +48,6 @@ public class ExerciseController {
     @PostMapping("/add")
     public String add(@Valid ExerciseCreateForm exerciseForm) {
         exerciseService.create(targetRepository.findByTargetId(exerciseForm.getTargetId()),
-                false,
                 rq.getMember(),
                 exerciseForm.getExName());
         return "redirect:/exercise/list";

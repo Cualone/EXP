@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -20,11 +19,10 @@ public class ExerciseService {
 
     private final TargetRepository targetRepository;
 
-    public Exercise create (Target target, boolean isCommon, Member member, String exName) {
+    public Exercise create(Target target, Member member, String exName) {
         Exercise exercise = Exercise
                 .builder()
                 .target(target)
-                .isCommon(isCommon)
                 .creator(member)
                 .exName(exName)
                 .build();
@@ -32,19 +30,27 @@ public class ExerciseService {
     }
 
     public List<Exercise> findAllExercises(Member member) {
-        return exerciseRepository.findByIsCommonTrueOrCreator(member);
-    }
-
-    public List<Exercise> findExercisesByTarget(Member member, Long targetId) {
-
-        Optional<Target> target = targetRepository.findById(targetId);
-        if (target.isPresent()) {
-            List<Exercise> arr = exerciseRepository.findByTargetAndIsCommonTrue(target.get());
-            arr.addAll(exerciseRepository.findByTargetAndIsCommonFalseAndCreator(target.get(), member));
-            return arr;
+        if ("admin".equals(member.getMemberId())) {
+            return exerciseRepository.findByCreator_memberId("admin");
         } else {
-            return new ArrayList<>();
+            List<Exercise> exercises = exerciseRepository.findByCreator_memberId(member.getMemberId());
+            exercises.addAll(exerciseRepository.findByCreator_memberId("admin"));
+            return exercises;
         }
     }
+    
+    public List<Exercise> findExercisesByTarget(Member member, Long targetId) {
+        return targetRepository.findById(targetId)
+                .map(target -> {
+                    if ("admin".equals(member.getMemberId())) {
+                        return exerciseRepository.findByCreator_memberIdAndTarget("admin", target);
+                    }
+                    List<Exercise> exercises = exerciseRepository.findByCreator_memberIdAndTarget(member.getMemberId(), target);
+                    exercises.addAll(exerciseRepository.findByCreator_memberIdAndTarget("admin", target));
+                    return exercises;
+                })
+                .orElseGet(ArrayList::new);
+    }
+
 
 }

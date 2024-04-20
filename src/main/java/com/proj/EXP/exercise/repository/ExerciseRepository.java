@@ -9,13 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
-    Optional<Exercise> findByExId(Long exId);
 
-    List<Exercise> findByIsCommonTrueOrCreator(Member creator);
+    List<Exercise> findByCreator_memberId(String memberId);
 
-    List<Exercise> findByTargetAndIsCommonFalseAndCreator(Target target, Member creator);
-
-    List<Exercise> findByTargetAndIsCommonTrue(Target target);
-
+    List<Exercise> findByCreator_memberIdAndTarget(String memberId, Target target);
 
 }

@@ -25,8 +25,9 @@ public class Init {
     ) {
         return args -> {
 
-            memberService.create("1234", "1234", "123412", false, LocalDate.of(1999,1,27), 123, 123);
+            memberService.create("admin", "admin", "123412", false, LocalDate.of(1999,1,27), 178, 87);
 
+            Member admin = memberService.findByMemberName("admin");
 
             List<Target> exerciseTargets = Arrays.asList(
                     new Target(1L, "가슴"),
@@ -37,11 +38,11 @@ public class Init {
             );
             targetRepository.saveAll(exerciseTargets);
 
-            exerciseService.create(exerciseTargets.get(0),true, null, "벤치프레스");
-            exerciseService.create(exerciseTargets.get(1),true, null, "데드리프트");
-            exerciseService.create(exerciseTargets.get(2),true, null, "사이드 레터럴 레이즈");
-            exerciseService.create(exerciseTargets.get(3),true, null, "바벨 컬");
-            exerciseService.create(exerciseTargets.get(4),true, null, "스쿼트");
+            exerciseService.create(exerciseTargets.get(0), admin, "벤치프레스");
+            exerciseService.create(exerciseTargets.get(1), admin, "데드리프트");
+            exerciseService.create(exerciseTargets.get(2), admin, "사이드 레터럴 레이즈");
+            exerciseService.create(exerciseTargets.get(3), admin, "바벨 컬");
+            exerciseService.create(exerciseTargets.get(4), admin, "스쿼트");
         };
     }
 }
