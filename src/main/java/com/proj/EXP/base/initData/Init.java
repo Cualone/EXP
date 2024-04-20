@@ -37,11 +37,11 @@ public class Init {
             );
             targetRepository.saveAll(exerciseTargets);
 
-            exerciseService.create(null, exerciseTargets.get(0),true, null, "벤치프레스");
-            exerciseService.create(null, exerciseTargets.get(1),true, null, "데드리프트");
-            exerciseService.create(null, exerciseTargets.get(2),true, null, "사이드 레터럴 레이즈");
-            exerciseService.create(null, exerciseTargets.get(3),true, null, "바벨 컬");
-            exerciseService.create(null, exerciseTargets.get(4),true, null, "스쿼트");
+            exerciseService.create(exerciseTargets.get(0),true, null, "벤치프레스");
+            exerciseService.create(exerciseTargets.get(1),true, null, "데드리프트");
+            exerciseService.create(exerciseTargets.get(2),true, null, "사이드 레터럴 레이즈");
+            exerciseService.create(exerciseTargets.get(3),true, null, "바벨 컬");
+            exerciseService.create(exerciseTargets.get(4),true, null, "스쿼트");
         };
     }
 }

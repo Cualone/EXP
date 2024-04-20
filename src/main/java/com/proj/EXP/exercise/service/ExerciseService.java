@@ -20,10 +20,9 @@ public class ExerciseService {
 
     private final TargetRepository targetRepository;
 
-    public Exercise create (Long exId, Target target, boolean isCommon, Member member, String exName) {
+    public Exercise create (Target target, boolean isCommon, Member member, String exName) {
         Exercise exercise = Exercise
                 .builder()
-                .exId(exId)
                 .target(target)
                 .isCommon(isCommon)
                 .creator(member)

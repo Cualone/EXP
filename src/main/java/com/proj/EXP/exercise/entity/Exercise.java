@@ -4,6 +4,7 @@ import com.proj.EXP.member.entity.Member;
 import com.proj.EXP.target.entity.Target;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.mapping.ToOne;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -19,7 +20,7 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long exId;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "targetId", referencedColumnName = "targetId")
     private Target target;
 

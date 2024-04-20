@@ -1,0 +1,44 @@
+<html layout:decorate="~{/layout.html}">
+
+<body>
+
+<main layout:fragment="main">
+    <script>
+        function AddForm__submit(form) {
+            if (form.exName.value.length === 0) {
+                form.exName.focus();
+                alert("운동명을 입력해주세요.");
+                return;
+            }
+            if (form.targetId.value === "") {
+                form.targetId.focus();
+                alert("타겟 부위를 선택해주세요.");
+                return;
+            }
+            form.submit();
+        }
+
+
+    </script>
+    <h2>운동 추가</h2>
+    <form th:action method="POST" onsubmit="AddForm__submit(this); return false;">
+        <div>
+            <label for="exName">운동 이름: </label>
+            <input type="text" id="exName" name="exName">
+        </div>
+        <div>
+            <label for="targetId">부위 선택: </label>
+            <select id="targetId" name="targetId">
+                <option value="">부위를 선택해주세요</option>
+                <option value="1">가슴</option>
+                <option value="2">등</option>
+                <option value="3">어깨</option>
+                <option value="4">팔</option>
+                <option value="5">하체</option>
+            </select>
+        </div>
+        <button type="submit">추가하기</button>
+    </form>
+</main>
+</body>
+</html>
