@@ -21,5 +21,5 @@ public class Target {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long targetId;
 
-    private String target;
+    private String targetName;
 }

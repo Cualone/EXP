@@ -19,18 +19,19 @@ public class RecordService {
 
     private final Rq rq;
 
-    public Record create(Exercise exercise) {
+    public Record create(Exercise exercise, LocalDate date) {
         Record record = Record
                 .builder()
                 .member(rq.getMember())
                 .exercise(exercise)
                 .target(exercise.getTarget())
-                .date(LocalDate.now())
+                .date(date)
                 .build();
         return recordRepository.save(record);
     }
 
-    public List<Record> findAll() {
-        return recordRepository.findAll();
+
+    public List<Record> findByMemberAndDate(Member member, LocalDate date) {
+        return recordRepository.findByMemberAndDate(member, date);
     }
 }

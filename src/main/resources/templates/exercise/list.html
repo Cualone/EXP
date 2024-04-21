@@ -6,15 +6,18 @@
     </script>
     <h1>운동 목록</h1>
     <div>
-        <button onclick="filterByTarget(0)">모든 부위</button>
-        <button onclick="filterByTarget(1)">가슴</button>
-        <button onclick="filterByTarget(2)">등</button>
-        <button onclick="filterByTarget(3)">어깨</button>
-        <button onclick="filterByTarget(4)">팔</button>
-        <button onclick="filterByTarget(5)">하체</button>
+        <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=0|">모두</a>
+        <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=1|">가슴</a>
+        <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=2|">등</a>
+        <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=3|">어깨</a>
+        <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=4|">팔</a>
+        <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=5|">하체</a>
     </div>
-    <form th:action="@{/record/add}" method="POST">
+    <form th:action="@{/exercise/record/add}" method="POST">
         <div>
+            <div>
+                <input type="hidden" name="date" th:value="${selectedDate}">
+            </div>
             <table>
                 <thead>
                 <tr>
@@ -27,7 +30,7 @@
                 <tr th:each="exercise : ${exercises}">
                     <td><input type="checkbox" name="exNames" th:value="${exercise.exName}"></td>
                     <td th:text="${exercise.exName}">운동 이름</td>
-                    <td th:text="${exercise.target.getTarget()}">타겟 이름</td>
+                    <td th:text="${exercise.target.getTargetName()}">타겟 이름</td>
                 </tr>
                 </tbody>
             </table>

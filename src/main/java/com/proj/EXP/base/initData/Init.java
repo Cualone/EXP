@@ -5,7 +5,6 @@ import com.proj.EXP.member.entity.Member;
 import com.proj.EXP.member.service.MemberService;
 import com.proj.EXP.target.entity.Target;
 import com.proj.EXP.target.repository.TargetRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,11 +37,11 @@ public class Init {
             );
             targetRepository.saveAll(exerciseTargets);
 
-//            exerciseService.create(exerciseTargets.get(0), admin, "벤치프레스");
-//            exerciseService.create(exerciseTargets.get(1), admin, "데드리프트");
-//            exerciseService.create(exerciseTargets.get(2), admin, "사이드 레터럴 레이즈");
-//            exerciseService.create(exerciseTargets.get(3), admin, "바벨 컬");
-//            exerciseService.create(exerciseTargets.get(4), admin, "스쿼트");
+            exerciseService.create(exerciseTargets.get(0), admin, "벤치프레스");
+            exerciseService.create(exerciseTargets.get(1), admin, "데드리프트");
+            exerciseService.create(exerciseTargets.get(2), admin, "사이드 레터럴 레이즈");
+            exerciseService.create(exerciseTargets.get(3), admin, "바벨 컬");
+            exerciseService.create(exerciseTargets.get(4), admin, "스쿼트");
         };
     }
 }
