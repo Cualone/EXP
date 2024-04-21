@@ -14,4 +14,5 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
 
     List<Exercise> findByCreator_memberIdAndTarget(String memberId, Target target);
 
+    Optional<Exercise> findByExName(String exName);
 }

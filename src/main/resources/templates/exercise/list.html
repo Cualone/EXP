@@ -1,7 +1,3 @@
-<html layout:decorate="~{/layout.html}">
-
-<body>
-
 <main layout:fragment="main">
     <script>
         function filterByTarget(targetId) {
@@ -17,24 +13,25 @@
         <button onclick="filterByTarget(4)">팔</button>
         <button onclick="filterByTarget(5)">하체</button>
     </div>
-    <div>
-        <table>
-            <thead>
-            <tr>
-                <th>운동 이름</th>
-                <th>대상</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- exercises 목록 반복 처리 -->
-            <tr th:each="exercise : ${exercises}">
-                <td th:text="${exercise.exName}">운동 이름</td>
-                <td th:text="${exercise.target.getTarget()}">타겟 이름</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <form th:action="@{/record/add}" method="POST">
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>선택</th>
+                    <th>운동 이름</th>
+                    <th>대상</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="exercise : ${exercises}">
+                    <td><input type="checkbox" name="exNames" th:value="${exercise.exName}"></td>
+                    <td th:text="${exercise.exName}">운동 이름</td>
+                    <td th:text="${exercise.target.getTarget()}">타겟 이름</td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit">기록 생성</button>
+        </div>
+    </form>
 </main>
-</body>
-
-</html>

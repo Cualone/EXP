@@ -38,7 +38,7 @@ public class ExerciseService {
             return exercises;
         }
     }
-    
+
     public List<Exercise> findExercisesByTarget(Member member, Long targetId) {
         return targetRepository.findById(targetId)
                 .map(target -> {
@@ -52,5 +52,11 @@ public class ExerciseService {
                 .orElseGet(ArrayList::new);
     }
 
+    public Exercise findByExName(String exName) {
+        return exerciseRepository.findByExName(exName).get();
+    }
 
+    public Exercise findById(Long exId) {
+        return exerciseRepository.findById(exId).get();
+    }
 }

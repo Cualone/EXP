@@ -38,11 +38,11 @@ public class Init {
             );
             targetRepository.saveAll(exerciseTargets);
 
-            exerciseService.create(exerciseTargets.get(0), admin, "벤치프레스");
-            exerciseService.create(exerciseTargets.get(1), admin, "데드리프트");
-            exerciseService.create(exerciseTargets.get(2), admin, "사이드 레터럴 레이즈");
-            exerciseService.create(exerciseTargets.get(3), admin, "바벨 컬");
-            exerciseService.create(exerciseTargets.get(4), admin, "스쿼트");
+//            exerciseService.create(exerciseTargets.get(0), admin, "벤치프레스");
+//            exerciseService.create(exerciseTargets.get(1), admin, "데드리프트");
+//            exerciseService.create(exerciseTargets.get(2), admin, "사이드 레터럴 레이즈");
+//            exerciseService.create(exerciseTargets.get(3), admin, "바벨 컬");
+//            exerciseService.create(exerciseTargets.get(4), admin, "스쿼트");
         };
     }
 }

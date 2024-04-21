@@ -1,4 +1,4 @@
-package com.proj.EXP.memberEx.entity;
+package com.proj.EXP.record.entity;
 
 import com.proj.EXP.exercise.entity.Exercise;
 import com.proj.EXP.member.entity.Member;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @ToString
 @Getter
 @Entity
-public class MemberEx {
+public class Record {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,12 +33,6 @@ public class MemberEx {
     private Target target;
 
     private LocalDate date;
-
-    private double weight;
-
-    private int count;
-
-    private int sets;
 
 
 }
