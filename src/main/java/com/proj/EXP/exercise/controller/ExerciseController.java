@@ -8,6 +8,7 @@ import com.proj.EXP.target.repository.TargetRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,7 @@ public class ExerciseController {
     private final Rq rq;
     private final TargetRepository targetRepository;
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/list")
     public String list(@RequestParam(value = "target", required = false, defaultValue = "0") Long targetId,
                        @RequestParam(value = "selectedDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate selectedDate,
@@ -42,11 +44,13 @@ public class ExerciseController {
         return "exercise/list";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/add")
     public String showAdd(ExerciseCreateForm exerciseCreateForm) {
         return "exercise/add";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/add")
     public String add(@Valid ExerciseCreateForm exerciseForm) {
         exerciseService.create(targetRepository.findByTargetId(exerciseForm.getTargetId()),

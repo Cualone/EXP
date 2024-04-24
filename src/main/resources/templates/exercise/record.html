@@ -20,6 +20,7 @@
             <tr th:each="record : ${records}">
                 <td th:text="${record.getExercise().getExName()}">운동 이름</td>
                 <td th:text="${record.getTarget().getTargetName()}">부위</td>
+                <td><a th:href="@{/exercise/record/delete(recordId=${record.getRecordId()}, selectedDate=${selectedDate})}">삭제</a></td>
             </tr>
             </tbody>
         </table>

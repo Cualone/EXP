@@ -5,15 +5,14 @@ import com.proj.EXP.base.rq.Rq;
 import com.proj.EXP.exercise.entity.Exercise;
 import com.proj.EXP.exercise.service.ExerciseService;
 import com.proj.EXP.record.RecordForm;
+import com.proj.EXP.record.repository.RecordRepository;
 import com.proj.EXP.record.service.RecordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -29,7 +28,9 @@ public class RecordController {
     private final ExerciseService exerciseService;
 
     private final Rq rq;
+    private final RecordRepository recordRepository;
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/record")
     public String record(@RequestParam(value = "selectedDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate selectedDate, Model model) {
         if (selectedDate == null) {
@@ -42,6 +43,7 @@ public class RecordController {
         return "/exercise/record";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/record/add")
     public String addRecords(RecordForm recordForm) {
 
@@ -51,6 +53,13 @@ public class RecordController {
                 recordService.create(exercise, recordForm.getDate());
             }
         });
-        return "redirect:/exercise/record"; // 성공적으로 처리한 후 리다이렉트할 페이지
+        return "redirect:/exercise/record?selectedDate=" + recordForm.getDate();
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/record/delete")
+    public String delRecords(@RequestParam("recordId") Long recordId, @RequestParam("selectedDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate selectedDate) {
+        recordService.delete(recordId);
+        return "redirect:/exercise/record?selectedDate=" + selectedDate;
     }
 }

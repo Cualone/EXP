@@ -34,4 +34,8 @@ public class RecordService {
     public List<Record> findByMemberAndDate(Member member, LocalDate date) {
         return recordRepository.findByMemberAndDate(member, date);
     }
+
+    public void delete(Long recordId) {
+        this.recordRepository.deleteById(recordId);
+    }
 }
