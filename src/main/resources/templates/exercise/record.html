@@ -1,31 +1,45 @@
 <html layout:decorate="~{/layout.html}">
 
+<head>
+    <style>
+        .calendar {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
 <body>
 
 <main layout:fragment="main">
     <div>
-        <div>
-            <a th:href="@{/exercise/record(selectedDate=${prevDate})}">이전</a>
-            <a th:href="@{/exercise/record(selectedDate=${nextDate})}">다음</a>
+        <div class="calendar">
+            <a th:href="@{/exercise/record(selectedDate=${prevDate})}"><i class="fa-solid fa-caret-left"
+                                                                          style="color: #888; font-size: 30px"></i></a>
+            <h4 th:text="${selectedDate}"></h4>
+            <a th:href="@{/exercise/record(selectedDate=${nextDate})}"><i class="fa-solid fa-caret-right"
+                                                                          style="color: #888; font-size: 30px"></i></a>
         </div>
-        <table>
-            <thead>
-
-            <tr>
-                <th>운동 이름</th>
-                <th>부위</th>
-            </tr>
-            </thead>
+        <table class="table-section">
             <tbody>
             <tr th:each="record : ${records}">
-                <td th:text="${record.getExercise().getExName()}">운동 이름</td>
-                <td th:text="${record.getTarget().getTargetName()}">부위</td>
-                <td><a th:href="@{/exercise/record/delete(recordId=${record.getRecordId()}, selectedDate=${selectedDate})}">삭제</a></td>
+                <td>
+                    <label>
+                        <span th:text="${record.getExercise().getExName()}">운동 이름</span>
+                        <span th:text="${record.getTarget().getTargetName()}">부위</span>
+                        <span>
+                            <a th:href="@{/exercise/record/delete(recordId=${record.getRecordId()}, selectedDate=${selectedDate})}">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </span>
+                    </label>
+                </td>
             </tr>
             </tbody>
         </table>
-        <div>
-            <a th:href="@{/exercise/list(selectedDate=${selectedDate})}">추가</a>
+        <div class="submit-section">
+            <a th:href="@{/exercise/list(selectedDate=${selectedDate})}">
+                <i class="fa-regular fa-square-plus" style="color: #888; font-size: 50px"></i>
+            </a>
         </div>
     </div>
 </main>

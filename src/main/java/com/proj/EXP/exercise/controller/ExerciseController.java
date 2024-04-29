@@ -52,11 +52,12 @@ public class ExerciseController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/add")
-    public String add(@Valid ExerciseCreateForm exerciseForm) {
+    public String add(@Valid ExerciseCreateForm exerciseForm,
+                      @RequestParam("selectedDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate selectedDate) {
         exerciseService.create(targetRepository.findByTargetId(exerciseForm.getTargetId()),
                 rq.getMember(),
                 exerciseForm.getExName());
-        return "redirect:/exercise/list";
+        return "redirect:/exercise/list?selectedDate=" + selectedDate;
     }
 
 }
