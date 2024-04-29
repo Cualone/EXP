@@ -38,4 +38,11 @@ public class RecordService {
     public void delete(Long recordId) {
         this.recordRepository.deleteById(recordId);
     }
+
+    public List<Target> getTargetsInLastWeek() {
+        LocalDate endDate = LocalDate.now(); // 현재 날짜
+        LocalDate startDate = endDate.minusWeeks(1); // 일주일 전
+
+        return recordRepository.findTargetsInLastWeek(rq.getMember().getMemberId(), startDate, endDate);
+    }
 }

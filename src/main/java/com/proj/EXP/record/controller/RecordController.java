@@ -62,4 +62,5 @@ public class RecordController {
         recordService.delete(recordId);
         return "redirect:/exercise/record?selectedDate=" + selectedDate;
     }
+
 }

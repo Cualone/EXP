@@ -1,3 +1,8 @@
 <div th:fragment="statusFragment" class="status row justify-content-center">
     <h4>Status</h4>
+    <ul>
+        <li th:each="target : ${targets}">
+            <span th:text="${target.getTargetId()}">target</span>
+        </li>
+    </ul>
 </div>
