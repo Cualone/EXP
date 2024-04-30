@@ -39,7 +39,7 @@ public class RecordService {
         this.recordRepository.deleteById(recordId);
     }
 
-    public List<Target> getTargetsInLastWeek() {
+    public List<Object[]> getTargetsInLastWeek() {
         LocalDate endDate = LocalDate.now(); // 현재 날짜
         LocalDate startDate = endDate.minusWeeks(1); // 일주일 전
 

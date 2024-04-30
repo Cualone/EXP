@@ -16,6 +16,9 @@ public interface RecordRepository extends JpaRepository<Record, Long> {
     List<Record> findByMemberAndDate(Member member, LocalDate date);
 
 
-    @Query("SELECT DISTINCT r.target FROM Record r WHERE r.member.memberId = :memberId AND r.date BETWEEN :startDate AND :endDate")
-    List<Target> findTargetsInLastWeek(String memberId, LocalDate startDate, LocalDate endDate);
+    @Query("SELECT r.target, COUNT(DISTINCT r.date) " +
+            "FROM Record r " +
+            "WHERE r.member.memberId = :memberId AND r.date BETWEEN :startDate AND :endDate " +
+            "GROUP BY r.target")
+    List<Object[]> findTargetsInLastWeek(String memberId, LocalDate startDate, LocalDate endDate);
 }
