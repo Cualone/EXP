@@ -29,11 +29,11 @@ public class Init {
             Member admin = memberService.findByMemberName("admin");
 
             List<Target> exerciseTargets = Arrays.asList(
-                    new Target(1L, "가슴"),
-                    new Target(2L, "등"),
-                    new Target(3L, "어깨"),
-                    new Target(4L, "팔"),
-                    new Target(5L, "하체")
+                    new Target(1L, "chest"),
+                    new Target(2L, "back"),
+                    new Target(3L, "shoulder"),
+                    new Target(4L, "arms"),
+                    new Target(5L, "lower-body")
             );
             targetRepository.saveAll(exerciseTargets);
 
