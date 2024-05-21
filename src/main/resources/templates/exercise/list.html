@@ -26,12 +26,13 @@
 
 <main layout:fragment="main">
     <div class="filter-links">
-        <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=0|">모두</a>
+        <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=0|">All</a>
         <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=1|">가슴</a>
         <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=2|">등</a>
         <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=3|">어깨</a>
         <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=4|">팔</a>
         <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=5|">하체</a>
+        <a th:href="|/exercise/list?selectedDate=${selectedDate}&target=6|">복근</a>
     </div>
     <form th:action="@{/exercise/record/add}" method="POST">
         <div>

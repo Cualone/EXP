@@ -20,14 +20,13 @@
 
 
     </script>
-    <h2>운동 추가</h2>
-    <form th:action method="POST" onsubmit="AddForm__submit(this); return false;">
-        <div>
-            <label for="exName">운동 이름: </label>
-            <input type="text" id="exName" name="exName">
+    <form th:action method="POST" class="p-10 flex flex-col gap-4" onsubmit="AddForm__submit(this); return false;">
+        <div class="field-container">
+            <label class="field-label" for="exName">운동 이름</label>
+            <input type="text" id="exName" name="exName" class="input input-bordered">
         </div>
         <div>
-            <label for="targetId">부위 선택: </label>
+            <label class="field-label" for="targetId">부위 선택</label>
             <select id="targetId" name="targetId">
                 <option value="">부위를 선택해주세요</option>
                 <option value="1">가슴</option>
@@ -35,9 +34,12 @@
                 <option value="3">어깨</option>
                 <option value="4">팔</option>
                 <option value="5">하체</option>
+                <option value="6">복근</option>
             </select>
         </div>
-        <button type="submit">추가하기</button>
+        <div class="d-flex justify-content-center mt-3">
+            <input type="submit" value="추가" class="btn btn-dark">
+        </div>
     </form>
 </main>
 </body>

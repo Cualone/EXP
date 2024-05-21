@@ -1,5 +1,6 @@
 package com.proj.EXP.record.repository;
 
+import com.proj.EXP.exercise.entity.Exercise;
 import com.proj.EXP.member.entity.Member;
 import com.proj.EXP.record.entity.Record;
 import com.proj.EXP.target.entity.Target;
@@ -21,4 +22,6 @@ public interface RecordRepository extends JpaRepository<Record, Long> {
             "WHERE r.member.memberId = :memberId AND r.date BETWEEN :startDate AND :endDate " +
             "GROUP BY r.target")
     List<Object[]> findTargetsInLastWeek(String memberId, LocalDate startDate, LocalDate endDate);
+
+    List<Record> findByMemberAndExerciseAndDate(Member member, Exercise exercise, LocalDate date);
 }

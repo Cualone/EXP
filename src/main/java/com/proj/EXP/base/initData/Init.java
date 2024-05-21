@@ -33,7 +33,8 @@ public class Init {
                     new Target(2L, "back"),
                     new Target(3L, "shoulder"),
                     new Target(4L, "arms"),
-                    new Target(5L, "lower-body")
+                    new Target(5L, "lower-body"),
+                    new Target(6L, "belly")
             );
             targetRepository.saveAll(exerciseTargets);
 

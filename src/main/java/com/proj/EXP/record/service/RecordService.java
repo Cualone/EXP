@@ -45,4 +45,9 @@ public class RecordService {
 
         return recordRepository.findTargetsInLastWeek(rq.getMember().getMemberId(), startDate, endDate);
     }
+
+    public boolean isExerciseRecordedOnDate(Exercise exercise, LocalDate date) {
+        List<Record> records = recordRepository.findByMemberAndExerciseAndDate(rq.getMember(), exercise, date);
+        return !records.isEmpty();
+    }
 }

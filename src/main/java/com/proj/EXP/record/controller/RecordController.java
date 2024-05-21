@@ -50,7 +50,12 @@ public class RecordController {
         recordForm.getExNames().forEach(exName -> {
             Exercise exercise = exerciseService.findByExName(exName);
             if (exercise != null) {
-                recordService.create(exercise, recordForm.getDate());
+
+                boolean isRecorded = recordService.isExerciseRecordedOnDate(exercise, recordForm.getDate());
+
+                if (!isRecorded) {
+                    recordService.create(exercise, recordForm.getDate());
+                }
             }
         });
         return "redirect:/exercise/record?selectedDate=" + recordForm.getDate();
