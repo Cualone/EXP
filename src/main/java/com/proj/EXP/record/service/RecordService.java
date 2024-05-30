@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -49,5 +50,9 @@ public class RecordService {
     public boolean isExerciseRecordedOnDate(Exercise exercise, LocalDate date) {
         List<Record> records = recordRepository.findByMemberAndExerciseAndDate(rq.getMember(), exercise, date);
         return !records.isEmpty();
+    }
+
+    public Record findById(Long recordId) {
+        return recordRepository.findById(recordId).orElse(null);
     }
 }

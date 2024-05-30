@@ -1,0 +1,50 @@
+<html layout:decorate="~{/layout.html}">
+
+<body>
+
+<main layout:fragment="main">
+    <div>
+        <h2>운동 세트 목록</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>운동 이름</th>
+                <th>무게</th>
+                <th>횟수</th>
+                <th>세트</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="set, iterStat : ${sets}">
+                <td th:text="${set.exercise.exName}"></td>
+                <td th:text="${set.weight}"></td>
+                <td th:text="${set.count}"></td>
+                <td th:text="${set.sets}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <h2>새로운 세트 추가</h2>
+        <form th:action="@{/exercise/addSet}" method="post">
+            <input type="hidden" name="recordId" th:value="${recordId}">
+            <div>
+                <label for="weight">무게:</label>
+                <input type="number" id="weight" name="weight" required>
+            </div>
+            <div>
+                <label for="count">횟수:</label>
+                <input type="number" id="count" name="count" required>
+            </div>
+            <div>
+                <label for="sets">세트:</label>
+                <input type="number" id="sets" name="sets" required>
+            </div>
+            <button type="submit">세트 추가</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

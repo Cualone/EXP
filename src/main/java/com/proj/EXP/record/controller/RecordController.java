@@ -62,7 +62,7 @@ public class RecordController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/record/delete")
+    @PostMapping("/record/delete")
     public String delRecords(@RequestParam("recordId") Long recordId, @RequestParam("selectedDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate selectedDate) {
         recordService.delete(recordId);
         return "redirect:/exercise/record?selectedDate=" + selectedDate;

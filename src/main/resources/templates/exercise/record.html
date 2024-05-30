@@ -7,6 +7,26 @@
             justify-content: center;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 클릭 가능한 record에 대한 클릭 이벤트 추가
+            document.querySelectorAll('.clickable-record').forEach(function(row) {
+                row.addEventListener('click', function() {
+                    var href = this.getAttribute('data-href');
+                    if(href) {
+                        window.location.href = href;
+                    }
+                });
+            });
+
+            // 삭제 버튼 클릭 시 이벤트 전파 방지
+            document.querySelectorAll('.clickable-record .fa-trash').forEach(function(deleteIcon) {
+                deleteIcon.closest('a').addEventListener('click', function(event) {
+                    event.stopPropagation(); // 클릭 이벤트가 상위로 전파되지 않도록 방지
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -21,10 +41,11 @@
         </div>
         <table class="table-section">
             <tbody>
-            <tr th:each="record : ${records}">
+            <tr th:each="record : ${records}" class="clickable-record" th:data-href="@{/exercise/set(recordId=${record.getRecordId()})}">
                 <td>
                     <label>
                         <span th:text="${record.getExercise().getExName()}">운동 이름</span>
+
                         <span th:text="${record.getTarget().getTargetName()}">부위</span>
                         <span>
                             <a th:href="@{/exercise/record/delete(recordId=${record.getRecordId()}, selectedDate=${selectedDate})}">

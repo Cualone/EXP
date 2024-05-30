@@ -24,4 +24,6 @@ public interface RecordRepository extends JpaRepository<Record, Long> {
     List<Object[]> findTargetsInLastWeek(String memberId, LocalDate startDate, LocalDate endDate);
 
     List<Record> findByMemberAndExerciseAndDate(Member member, Exercise exercise, LocalDate date);
+
+    Optional<Record> findByRecordId(Long recordId);
 }
