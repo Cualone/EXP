@@ -29,6 +29,6 @@ public class RecordSetsController {
                          @RequestParam("sets") int sets) {
 
         recordSetsService.addSet(recordId, weight, count, sets);
-        return "redirect:/exercise/record";
+        return "redirect:/exercise/set?recordId=" + recordId;
     }
 }
