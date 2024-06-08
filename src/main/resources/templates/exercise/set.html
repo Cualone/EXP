@@ -107,6 +107,7 @@
 <body>
 <main layout:fragment="main">
     <h3 th:text="${record.getExercise().getExName()}"></h3>
+    <a th:href="@{/exercise/record(selectedDate=${record.getDate()})}" class="back-btn">뒤로가기</a>
     <div class="set-list-container">
         <table>
             <thead>
