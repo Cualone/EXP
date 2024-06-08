@@ -37,4 +37,8 @@ public class RecordSetsService {
     public List<RecordSets> findSetsByRecordId(Long recordId) {
         return recordSetsRepository.findByRecordRecordId(recordId);
     }
+
+    public void deleteSetById(Long setId) {
+        recordSetsRepository.deleteById(setId);
+    }
 }

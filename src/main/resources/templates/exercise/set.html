@@ -47,7 +47,7 @@
             border-radius: 3px;
         }
 
-        form button[type="submit"] {
+        .addSet {
             background-color: #4CAF50;
             color: white;
             padding: 10px 20px;
@@ -56,9 +56,10 @@
             cursor: pointer;
         }
 
-        form button[type="submit"]:hover {
+        .addSet:hover {
             background-color: #45a049;
         }
+
         .weight-btn {
             background-color: #4CAF50;
             color: white;
@@ -72,9 +73,26 @@
         .weight-btn:hover {
             background-color: #45a049;
         }
+
         .set-list-container {
-            height: 250px;
+            height: 200px;
             overflow-y: auto;
+        }
+        .set-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .delete-btn{
+            background: none;
+            border: none;
+            padding: 5px;
+            margin: auto;
+            cursor: pointer;
+            color: red;
+        }
+        .delete-btn .fa-trash {
+            font-size: 1em;  /* 아이콘 크기 조정 */
         }
     </style>
     <script>
@@ -88,12 +106,12 @@
 </head>
 <body>
 <main layout:fragment="main">
+    <h3 th:text="${record.getExercise().getExName()}"></h3>
     <div class="set-list-container">
         <table>
             <thead>
             <tr>
                 <th>#</th>
-                <th>운동 이름</th>
                 <th>무게</th>
                 <th>횟수</th>
                 <th>세트</th>
@@ -102,10 +120,20 @@
             <tbody>
             <tr th:each="set, iterStat : ${sets}">
                 <td th:text="${iterStat.count}"></td>
-                <td th:text="${set.exercise.exName}"></td>
                 <td th:text="${set.weight}"></td>
                 <td th:text="${set.count}"></td>
-                <td th:text="${set.sets}"></td>
+                <td>
+                    <div class="set-actions">
+                        <span th:text="${set.sets}"></span>
+                        <form th:action="@{/exercise/deleteSet}" method="post" class="delete-btn">
+                            <input type="hidden" name="setId" th:value="${set.setId}">
+                            <input type="hidden" name="recordId" th:value="${record.getRecordId()}">
+                            <button type="submit">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -118,10 +146,10 @@
         <button class="weight-btn" onclick="adjustWeight('weight', 5)">+5</button>
         <button class="weight-btn" onclick="adjustWeight('weight', 2.5)">+2.5</button>
         <form th:action="@{/exercise/addSet}" method="post">
-            <input type="hidden" name="recordId" th:value="${recordId}">
+            <input type="hidden" name="recordId" th:value="${record.getRecordId()}">
             <div>
                 <label for="weight">무게:</label>
-                <input type="number" id="weight" name="weight" value="0" min="0" required>
+                <input type="number" id="weight" name="weight" value="0" min="0" step="any" required>
             </div>
             <div>
                 <label for="count">횟수:</label>
@@ -132,7 +160,7 @@
                 <input type="number" id="sets" name="sets" value="0" min="1" required>
             </div>
             <div>
-                <button type="submit">세트 추가</button>
+                <button type="submit" class="addSet">세트 추가</button>
             </div>
         </form>
     </div>
